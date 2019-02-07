@@ -1,6 +1,12 @@
 package com.project.dao;
 
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Repository;
+
 import com.project.model.Invoice;
+@Repository("invoiceDAO")
+@Transactional
 
 public class InvoiceDAOImpl implements InvoiceDAO
 {

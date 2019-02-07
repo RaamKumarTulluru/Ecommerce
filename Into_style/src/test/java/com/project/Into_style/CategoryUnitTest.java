@@ -24,6 +24,7 @@ public class CategoryUnitTest
 		categoryDAO=(CategoryDAO)context.getBean("categoryDAO");
 	}
 
+	@Ignore
 	@Test
 	public void addCategoryTest()
 	{
@@ -49,6 +50,7 @@ public class CategoryUnitTest
 		category.setCategoryDesc("Clothing");
 		assertTrue("Problem in Updating the Category",categoryDAO.updateCategory(category));
 	}
+	@Ignore
 	@Test
 	public void listCategoriesTest()
 	{

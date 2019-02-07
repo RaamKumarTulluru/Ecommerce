@@ -26,7 +26,7 @@ static ProductDAO productDAO;
 	}
 	
 
-
+	@Ignore
 	@Test
 	public void addProductTest()
 	{

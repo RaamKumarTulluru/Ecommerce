@@ -22,7 +22,7 @@ static UserDAO userDAO;
 		context.refresh();	
 		userDAO=(UserDAO)context.getBean("userDAO");
 	}
-	
+	@Ignore
 
 	@Test
 	public void registerUserTest()

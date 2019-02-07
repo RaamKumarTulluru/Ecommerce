@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import com.project.model.Category;
 
+
+
 @Repository("categoryDAO")
 @Transactional
 public class CategoryDAOImpl implements CategoryDAO
@@ -19,7 +21,7 @@ public class CategoryDAOImpl implements CategoryDAO
 	@Autowired
 	SessionFactory sessionFactory;
 
-	@Override
+	
 	public boolean addCategory(Category category) 
 	{
 		try
@@ -35,7 +37,7 @@ public class CategoryDAOImpl implements CategoryDAO
 		}
 	}
 
-	@Override
+	
 	public boolean deleteCategory(Category category) 
 	{
 		try
@@ -51,8 +53,8 @@ public class CategoryDAOImpl implements CategoryDAO
 		}
 	}
 
-	@Override
-	public boolean updateCategory(Category category) 
+
+public boolean updateCategory(Category category) 
 	{
 		try
 		{
@@ -69,7 +71,7 @@ public class CategoryDAOImpl implements CategoryDAO
 
 	}
 
-	@Override
+
 	public List<Category> listCategories() 
 	{
 
@@ -80,7 +82,7 @@ public class CategoryDAOImpl implements CategoryDAO
 		return  listCategories;
 	}
 
-	@Override
+
 	public Category getCategory(int categoryID) 
 	{
 		Session session=sessionFactory.openSession();

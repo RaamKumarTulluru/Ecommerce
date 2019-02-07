@@ -26,7 +26,7 @@ public class SupplierUnitTest
 	}
 
 	
-
+	@Ignore
 	@Test
 	public void addSupplierTest()
 	{
@@ -51,7 +51,7 @@ public class SupplierUnitTest
 		
 		assertTrue("Problem in Updating the Supplier",supplierDAO.updateSupplier(supplier));
 	}*/
-	
+	@Ignore
 	@Test
 	public void listSupplieresTest()
 	{
