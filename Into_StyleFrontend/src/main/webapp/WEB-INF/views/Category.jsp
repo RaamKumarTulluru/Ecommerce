@@ -27,11 +27,10 @@
   </form>
   <table class="table-bordered" align="center"> 
     <tr>
-    
     <td> Category ID</td>
     <td> Category Name</td>
     <td> Category Desc</td>
-   
+    <td> Operations</td>
     </tr>
     <c:forEach items="${listCategories}" var="category">
     <tr>

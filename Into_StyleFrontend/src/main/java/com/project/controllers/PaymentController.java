@@ -1,6 +1,5 @@
 package com.project.controllers;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -18,106 +17,93 @@ import com.project.dao.ProductDAO;
 import com.project.dao.UserDAO;
 import com.project.model.Cart;
 import com.project.model.Invoice;
-import com.project.model.User;
+import com.project.model.UserDetail;
 
 @Controller
-
 public class PaymentController 
-{/*
+{
+	
 	@Autowired
 	CartDAO cartDAO;
 	
-    @Autowired
-    ProductDAO productDAO;
-    
-    @Autowired
-    UserDAO userDAO;
-    
-    @Autowired
-    InvoiceDAO orderDAO; 
-    
-  @RequestMapping("/checkout")
-  public String checkOut(Model m,HttpSession session)
-  {
-	  String username=(String)session.getAttribute("username");
-		List<Cart> cartItemList=cartDAO.listCart(username);
-		
-		m.addAttribute("cartItemList", cartItemList);
-		m.addAttribute("grandTotal", this.getGrandTotal(cartItemList));
-		
-		User userDetail=userDAO.getUser(username);
-		
-	    String address=userDetail.getCustomerAddr();
-	    
-	    m.addAttribute("addr", address);
-	  
-	    return"OrderConfirm";
-  }
-  
-  @RequestMapping(value="/UpdateAddr", method=RequestMethod.POST)
-  public String UpdateAddr(@RequestParam("addr")String addr,Model m, HttpSession session)
-  {
-	  String username=(String)session.getAttribute("username");
-		List<Cart> cartItemList=cartDAO.listCart(username);
-		
-		m.addAttribute("cartItemList", cartItemList);
-		m.addAttribute("grandTotal", this.getGrandTotal(cartItemList));
-		
-		User userdetail=userDAO.getUser(username);
-		userdetail.setCustomerAddr(addr);		
+	@Autowired
+	ProductDAO productDAO;
 	
-
-	    String address=userdetail.getCustomerAddr();
-	    
-	    m.addAttribute("addr", address);
-	  
-	  return "OrderConfirm";
-  }
-  
-  @RequestMapping(value="/payment")
-  public String paymentPage(Model m, HttpSession session)
-  {
-	  
-	  
-	  return "Payment";
-  }
-  
-  @RequestMapping(value="/receipt", method=RequestMethod.POST)
-  public String generateReceipt(@RequestParam ("rd") String rd, Model m,HttpSession session)
-  {
-	  String username=(String)session.getAttribute("username");
-	  
-	  Invoice orderDetail=new Invoice();
-	  orderDetail.setOrderDate(new Date());
-	  orderDetail.setShippingAddress(userDAO.getUser(username).getCustomerAddr());
-	  orderDetail.setUsername(username);
-	  
-	  List<Cart> cartItemList=cartDAO.listCart(username);
+	@Autowired
+	UserDAO userDAO;
+	
+	@Autowired
+	InvoiceDAO invoiceDAO;
+	
+	@RequestMapping("/checkout")
+	public String chechout(Model m,HttpSession session)
+	{
+		String username=(String)session.getAttribute("username");
+		List<Cart> cartList=cartDAO.listCart(username);
+		m.addAttribute("cartList",cartList);
+		m.addAttribute("grandTotal",this.getGrandTotal(cartList));
+		String address=userDAO.getUser(username).getCustomerAddress();
+		m.addAttribute("address",address);
+		return "OrderConfirm";
+	}
+	
+	@RequestMapping(value="/updateAddress",method=RequestMethod.POST)
+	public String updateAddress(@RequestParam("address")String address,Model m,HttpSession session)
+	{
+		String username=(String)session.getAttribute("username");
+		List<Cart> cartList=cartDAO.listCart(username);
+		m.addAttribute("cartList",cartList);
+		m.addAttribute("grandTotal",this.getGrandTotal(cartList));
+		UserDetail userdetail=userDAO.getUser(username);
+	    userdetail.setCustomerAddress(address);
+	    userDAO.updateAddress(userdetail);
+		String address1=userDAO.getUser(username).getCustomerAddress();
+		m.addAttribute("address",address1);
+		return "OrderConfirm";
 		
-	  m.addAttribute("cartItemList", cartItemList);
-	  m.addAttribute("grandTotal", this.getGrandTotal(cartItemList));
+	}
+	
+	@RequestMapping(value="/payment")
+	public String paymentpage(Model m,HttpSession session)
+	{
 		
-	  orderDetail.setTotalAmount(this.getGrandTotal(cartItemList));
-	  
-	  orderDAO.saveOrder(orderDetail);
-	  orderDAO.updateCart(username);
-	  
-	  m.addAttribute("orderDetail", orderDetail);
-	  
-	  return "Receipt";
-  }
-  
-  public int getGrandTotal(List<Cart> cartList)
-	 {
+		return "Payment";
+		
+	}
+	
+	@RequestMapping(value="/invoice",method=RequestMethod.POST)
+	public String generateInvoice(@RequestParam("paymentmode")String paymentmode,Model m,HttpSession session)
+	{
+		String username=(String)session.getAttribute("username");
+		Invoice invoice=new Invoice();
+		invoice.setOrderDate(new java.util.Date());
+		invoice.setShippingAddress(userDAO.getUser(username).getCustomerAddress());
+		invoice.setPaymentType(paymentmode);
+		invoice.setUsername(username);
+		
+		List<Cart> cartList=cartDAO.listCart(username);
+		m.addAttribute("cartList",cartList);
+		m.addAttribute("grandTotal",this.getGrandTotal(cartList));
+		
+		UserDetail userdetail=userDAO.getUser(username);
+		invoice.setTotalAmount(this.getGrandTotal(cartList));
+		invoiceDAO.saveOrder(invoice);
+		invoiceDAO.updateCart(username);
+		m.addAttribute("invoice",invoice);
+		
+		return "Invoice";
+		
+	}
+	
+	public int getGrandTotal(List<Cart>cartList)
+	{
 		int grandTotal=0,count=0;
 		while(count<cartList.size())
 		{
 			grandTotal=grandTotal+(cartList.get(count).getQuantity()*cartList.get(count).getPrice());
 			count++;
 		}
-		return grandTotal;
+		return grandTotal;	
 	}
-
-*/
+	
 }
-

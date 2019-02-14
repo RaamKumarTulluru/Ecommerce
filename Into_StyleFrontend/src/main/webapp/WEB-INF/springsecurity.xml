@@ -15,6 +15,7 @@
     http://www.springframework.org/schema/security
     http://www.springframework.org/schema/security/spring-security.xsd">
       
+      
 <security:http auto-config="true" use-expressions="true">
 <security:form-login login-page="/login" default-target-url="/" login-processing-url="/perform_login" 
 authentication-failure-url="/login" authentication-success-forward-url="/login_success" />
@@ -29,8 +30,8 @@ authentication-failure-url="/login" authentication-success-forward-url="/login_s
      <security:authentication-provider>
         <security:jdbc-user-service
                                    data-source-ref="dataSource"
-                                   users-by-username-query="select username,password,enabled from Userdetail where username=?"
-                                   authorities-by-username-query="select username,role from Userdetail where username=?" />
+                                   users-by-username-query="select username,password,enabled from UserDetail where username=?"
+                                   authorities-by-username-query="select username,role from UserDetail where username=?" />
   
      </security:authentication-provider>
 </security:authentication-manager>

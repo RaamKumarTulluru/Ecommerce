@@ -39,9 +39,9 @@
               <td><form:input path="productDesc"/></td>
            </tr>
            <tr>
-     <td> Image </td>
-     <td> <form:input type="file" path="pimage" /> </td>
-  </tr>
+              <td>Product image</td>
+              <td><form:input type="file" path="productimage"/></td>
+           </tr>
            <tr>
               <td colspan="2"><center><input type="submit" value="InsertProduct"/></center></td>
            </tr>
@@ -56,7 +56,7 @@
            <td>Price</td>
            <td>Stock</td>
            <td>SupplierId</td>
-   
+           <td>Operations</td>
          </tr>
          <c:forEach items="${productList}" var="product">
          <tr>
