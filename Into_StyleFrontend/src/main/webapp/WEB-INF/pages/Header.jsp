@@ -46,7 +46,7 @@
 					</c:if>
 			</c:if>
 			<ul class="nav navbar-nav navbar-right">
-      <li><a href="<c:url value="/signup"/>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+       <li><a href="<c:url value="/signup"/>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="<c:url value="/login"/>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
 		</div>

@@ -3,7 +3,7 @@
 <html>
 <body> 
 
-<h3>Admin Home Page</h3>
+<h3>ADMIN</h3>
 
 </body>
 </html>

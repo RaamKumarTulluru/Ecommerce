@@ -31,9 +31,7 @@
             </td>
          </tr>
          <tr>
-             <td>SupplierId</td>
-             <td><form:input path="supplierId"/></td>
-          </tr>
+             
           <tr>
               <td>Product Desc</td>
               <td><form:input path="productDesc"/></td>
@@ -55,7 +53,7 @@
            <td>Product Name</td>
            <td>Price</td>
            <td>Stock</td>
-           <td>SupplierId</td>
+           
            <td>Operations</td>
          </tr>
          <c:forEach items="${productList}" var="product">
@@ -64,7 +62,7 @@
             <td>${product.productName}</td>
             <td>${product.price}</td>
             <td>${product.stock}</td>
-            <td>${product.supplierId}</td>
+            
             <td>
                   <a href="<c:url value="/editProduct/${product.productId}"/>"class="btn btn-success">Edit</a>/
                   <a href="<c:url value="/deleteProduct/${product.productId}"/>"class="btn btn-danger">Delete</a>

@@ -78,7 +78,7 @@ public class ProductController
 	    }
 	    else
 	    {
-	    	m.addAttribute("error message", "problem in uploadinf the image:");
+	    	m.addAttribute("error message", "problem in uploading the image:");
 	    }
 	    
 		List<Product> listProducts=productDAO.listProducts();

@@ -34,7 +34,7 @@
 </form>
  </c:forEach>
 <tr class="warning">
-<td colspan="4">Total Purchase Amount</td>
+<td colspan="4">Total Expenditure</td>
 <td colspan="2">${grandTotal}</td>
 </tr>
 <tr class="info">
